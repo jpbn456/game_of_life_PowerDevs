@@ -1,6 +1,6 @@
-def generate_pdm_file(m_cells):
-    # Initial part of the file
-    pdm_content = """Coupled
+def initialize_pdm():
+        # Initial part of the file
+    return """Coupled
     {
     Type = Root
     Name = proyecto_simulacion
@@ -20,46 +20,62 @@ def generate_pdm_file(m_cells):
         }
     System
         {"""
-    
+
+x_controller = -2000
+y_controller = 45
+atoms_size = 200
+
+def define_controller():
     # Adding controller
-    controller_content = """    
+    return f"""    
         Atomic
-            {
+            {{
             Name = Controller
             Ports = 1 ; 1
             Path = celulas/controller.h
             Description = Atomic DEVS model
             Graphic
-                {
-                Position = -11355 ; 45
-                Dimension = 675 ; 675
+                {{
+                Position = {x_controller} ; {y_controller}
+                Dimension = {atoms_size} ; {atoms_size}
                 Direction = Right
                 Color = 15
                 Icon = None
-                }
+                }}
             Parameters
-                {
+                {{
                 cellId = Val; 0 ; cell id
                 value = Val; 1.33512e-306 ; value of the cell. 1 = on 0 = off
-                }
-            }"""
-    pdm_content += controller_content
+                }}
+            }}"""
 
+x_cells = -16000 
+y_cells = -2010
+# cells_amount #start in 2 because "1" is controller
+def define_cells(m, n):
+    # Generating cells
+    pdm_content = ""
     x = 0;
     y = 0;
-    # Generating cells
-    for i in range(m_cells):
-        cell_content =f"""
+    cells_amount = 2
+    for i in range(m):
+        for j in range(n):
+            pdm_content += define_single_cell(i, j, cells_amount)
+            cells_amount += 1
+    return pdm_content
+
+def define_single_cell(x, y, cell_id):
+    return f"""
         Atomic
             {{
-            Name = Cell_{i}
+            Name = Cell_{cell_id}
             Ports = 1 ; 1
             Path = celulas/celula.h
             Description = Atomic DEVS model
             Graphic
                 {{
-                Position = -13080 ; -2010  // Adjust position as needed
-                Dimension = 675 ; 720
+                Position = {x_cells + (atoms_size + 200) * x } ; {y_cells + (atoms_size + 200) * y }  // Adjust position as needed
+                Dimension = {atoms_size} ; {atoms_size}
                 Direction = Right
                 Color = 15
                 Icon = None
@@ -71,9 +87,42 @@ def generate_pdm_file(m_cells):
                 Alive = Str;{0}; Cell alive status
                 }}
             }}"""
-        pdm_content += cell_content
-        x += 1 
-        y += 1
+
+def define_lines(m, n):
+    # Generating cells
+    pdm_content = ""
+    x = 0;
+    y = 0;
+    cells_amount = 2
+    for i in range(m):
+        for j in range(n):
+            pdm_content += define_single_line(i, j, cells_amount)
+            cells_amount += 1
+    return pdm_content
+
+def define_single_line(x, y, cell_id):
+    return f"""
+        Line
+            {{
+            Source = Cmp ;  {cell_id} ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = {x_cells + (atoms_size + 200) * x + atoms_size}; {x_controller}
+            PointY = {y_cells + (atoms_size + 200) * y + atoms_size // 2} ; {y_controller + atoms_size//2} 
+            }}
+        Line
+            {{
+            Source = Cmp ; 1 ;  1 ; {cell_id - 2}
+            Sink = Cmp ; {cell_id} ;  1 ; -1
+            PointX = {x_controller + atoms_size}; {x_cells + (atoms_size + 200) * x}
+            PointY = {y_controller + atoms_size // 2} ; {y_cells + (atoms_size + 200) * y + atoms_size//2} 
+            }}"""
+
+def generate_pdm_file(m, n):
+
+    pdm_content = initialize_pdm()
+    pdm_content += define_controller()
+    pdm_content += define_cells(m, n)
+    pdm_content += define_lines(m, n)
     # Write to a .pdm file
     pdm_content +=  """
         }
@@ -83,5 +132,6 @@ def generate_pdm_file(m_cells):
         file.write(pdm_content)
 
 # Specify the number of cells you want
-m_cells = 10  # Change this to your desired number of cells
-generate_pdm_file(m_cells)
+m = 8  # Change this to your desired number of cells
+n = 8
+generate_pdm_file(m, n)
