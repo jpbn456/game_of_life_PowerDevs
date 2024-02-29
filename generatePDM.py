@@ -1,3 +1,9 @@
+# Specify the number of cells you want
+m = 8  # Change this to your desired number of cells
+n = 8
+alive_cells = []
+
+
 def initialize_pdm():
         # Initial part of the file
     return """Coupled
@@ -84,9 +90,12 @@ def define_single_cell(x, y, cell_id):
                 {{
                 x_pos = Str;{x}; Cell Identity Number, Position x
                 y_pos = Str;{y}; Cell Identity Number, Position y
-                Alive = Str;{0}; Cell alive status
+                Alive = Str;{define_alive_status(x, y)}; Cell alive status
                 }}
             }}"""
+
+def define_alive_status(x, y):
+    return 1 if (x, y) in alive_cells else 0
 
 def define_lines(m, n):
     # Generating cells
@@ -131,7 +140,30 @@ def generate_pdm_file(m, n):
     with open('model.pdm', 'w') as file:
         file.write(pdm_content)
 
-# Specify the number of cells you want
-m = 8  # Change this to your desired number of cells
-n = 8
-generate_pdm_file(m, n)
+import json
+
+
+def read_cfg(json_file):
+    with open(json_file) as file:
+        data = json.load(file)
+    m = data['basic']['m']
+    n = data['basic']['n']
+
+    for cell in data['alive_cells']:
+        x = cell['x']
+        y = cell['y']
+        if(x >= m or y >= n): 
+            raise ValueError("Wrong imput value")
+        alive_cells.append((x, y))
+
+import argparse
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Create PDM file")
+    parser.add_argument("json_cfg_path", help="Path to the cfg.json file.")
+    args = parser.parse_args()
+    read_cfg(args.json_cfg_path)
+    generate_pdm_file(m, n)
+    
+
+
