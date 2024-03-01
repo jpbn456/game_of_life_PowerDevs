@@ -74,7 +74,7 @@ def define_single_cell(x, y, cell_id):
     return f"""
         Atomic
             {{
-            Name = Cell_{cell_id}
+            Name = Cell_{x}_{y}
             Ports = 1 ; 1
             Path = celulas/celula.h
             Description = Atomic DEVS model
