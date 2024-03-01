@@ -16,9 +16,9 @@ class celula: public Simulator {
 // and parameters
 double sigma;
 bool alive;
-int xPos;
-int yPos;
-int aliveNeighbors;
+int x_pos;
+int y_pos;
+int value[3];
 #define INF 1e20
 public:
 	celula(const char *n): Simulator(n) {};

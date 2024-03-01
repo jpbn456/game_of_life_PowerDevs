@@ -7,20 +7,27 @@ va_start(parameters,t);
 //where:
 //      %Name% is the parameter name
 //	%Type% is the parameter type
-sigma = 0;
-int fvar = va_arg(parameters,int);
-n = fvar;
-fvar = va_arg(parameters,int);
-m = fvar;
+sigma = INF;
+char *fvar = va_arg(parameters,char*);
+n = getScilabVar(fvar);
+fvar = va_arg(parameters,char*);
+m = getScilabVar(fvar); 
+cell_change_counter = n*m;
+for(int i = 0;i < n; i++)
+	alive_cells[i] = new int[m];
 
+for(int i = 0; i < n; i++)
+	for(int j = 0; j < m; j++)
+		alive_cells[i][j] = 0;
+		
 }
 double controller::ta(double t) {
 //This function returns a double.
-return sigma+1;
+return sigma;
 }
 void controller::dint(double t) {
-if(sigma = 0)
-	sigma = INF;
+cell_change_counter = n*m;
+sigma = INF;
 }
 void controller::dext(Event x, double t) {
 //The input event is in the 'x' variable.
@@ -28,12 +35,16 @@ void controller::dext(Event x, double t) {
 //     'x.value' is the value (pointer to void)
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
-//TO DO: Informar a todos los vecinos que cambió el estado a uno nuevo
-int* value = (int*)x.value;
-x_cell = value[0];
-y_cell = value[1];
-alive_cell = value[2];
-sigma = 0;
+int *value = (int*)x.value;
+int x_pos = value[0];
+int y_pos = value[1];
+bool alive = value[2];
+alive_cells[x_pos][y_pos] = alive;
+cell_change_counter--;
+if(cell_change_counter == 0) 
+	sigma = 0;
+else 
+	sigma = INF;
 }
 Event controller::lambda(double t) {
 //This function returns an Event:
@@ -41,14 +52,10 @@ Event controller::lambda(double t) {
 //where:
 //     %&Value% points to the variable which contains the value.
 //     %NroPort% is the port number (from 0 to n-1)
-/*int calculateCellPort(int x,int y){
-		return ((x*(m-1))+y)*-/ 
-*/
 
-int result[3];
-result[0] = x_cell;
-result[1] = y_cell;
-result[2] = alive_cell;
+result[0] = alive_cells;
+result[1] = &n;
+result[2] = &m;
 return Event(&result,0);
 }
 void controller::exit() {

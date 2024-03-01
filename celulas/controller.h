@@ -13,11 +13,11 @@ class controller: public Simulator {
 // output variables
 // and parameters
 double sigma;
+int cell_change_counter;
 int n;
 int m;
-int x_cell;
-int y_cell;
-bool alive_cell;
+int** alive_cells;
+void* result[3];
 #define INF 1e20
 
 public:
