@@ -50,8 +50,8 @@ def define_controller():
                 }}
             Parameters
                 {{
-                cellId = Val; 0 ; cell id
-                value = Val; 1.33512e-306 ; value of the cell. 1 = on 0 = off
+                N = Str; {n}; cell id
+                M = Str; {m}; value of the cell. 1 = on 0 = off
                 }}
             }}"""
 
