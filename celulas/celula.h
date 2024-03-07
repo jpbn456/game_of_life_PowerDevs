@@ -8,6 +8,7 @@
 #include "stdarg.h"
 
 #include "iostream"
+#include "vector"
 
 
 class celula: public Simulator { 
@@ -15,7 +16,7 @@ class celula: public Simulator {
 // output variables
 // and parameters
 double sigma;
-bool alive;
+int alive;
 int x_pos;
 int y_pos;
 int value[3];

@@ -18,6 +18,7 @@ int n;
 int m;
 int** alive_cells;
 void* result[3];
+int steps;
 #define INF 1e20
 
 public:

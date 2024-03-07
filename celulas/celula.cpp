@@ -1,5 +1,9 @@
 #include "celula.h"
 void celula::init(double t,...) {
+#include <iostream> // or any other standard header you might be using
+using namespace std;
+#include <vector>
+
 //The 'parameters' variable contains the parameters transferred from the editor.//
 va_list parameters;
 va_start(parameters,t);
@@ -26,6 +30,7 @@ return sigma;
 }
 void celula::dint(double t) {
 sigma = INF;
+
 }
 void celula::dext(Event x, double t) {
 //The input event is in the 'x' variable.
@@ -33,55 +38,59 @@ void celula::dext(Event x, double t) {
 //     'x.value' is the value (pointer to void)
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
-int *values = (int*)x.value;
-int n = (int)*(x.value[1]);
-int m = (int)*x.value[2];
-bool** alive_matrix = new bool*[n];
+// Assume x.value is initially set up correctly as described above
+
+void* generalPointer = x.value; 
+void** resultArray = static_cast<void**>(generalPointer);
+int** retrievedMatrix = static_cast<int**>(resultArray[0]);
+int* nPtr = static_cast<int*>(resultArray[1]); 
+int* mPtr = static_cast<int*>(resultArray[2]); 
+int n = *nPtr;
+int m = *mPtr; // Dereference to get m
+int matrix[n][m];
+
+
 for(int i = 0; i < n; ++i) {
-    alive_matrix[i] = new bool[m];
+    for(int j = 0; j < m; ++j) {
+        matrix[i][j] = retrievedMatrix[i][j];
+    }
 }
 
 int alive_neighbors = 0;
-for(int i = 0; i < n; ++i) 
-   for(int j = 0; j < m; ++j) 
-		alive_matrix[i][j] = values[2 + i * m + j] != 0;
-	
-if(x_pos > 0) {
-	if(alive_matrix[x_pos-1][y_pos] > 0)
-		alive_neighbors++; 
-	if(y_pos > 0)
-    if(alive_matrix[x_pos-1][y_pos-1])
-      alive_neighbors++;
-  if(y_pos < m-1)
-    if(alive_matrix[x_pos-1][y_pos+1])
-      alive_neighbors++; 
-}
-if(x_pos < n-1){ 
-  if(alive_matrix[x_pos+1][y_pos] > 0)
-    alive_neighbors++;
-  if(y_pos > 0)
-    if(alive_matrix[x_pos+1][y_pos-1] > 0)
-      alive_neighbors++;
-  if(y_pos < m-1) 
-    if(alive_matrix[x_pos+1][y_pos+1] > 0) 
-      alive_neighbors++;
-}
-if(y_pos < m-1){
-  if(alive_matrix[x_pos][y_pos+1] > 0)
-    alive_neighbors++;
-}
-if(y_pos > 0)
-  if(alive_matrix[x_pos][y_pos-1] > 0)
-    alive_neighbors++;
+
+m--;
+n--;
+if(x_pos > 0 && y_pos > 0)
+	 if(matrix[x_pos-1][y_pos-1]==1)
+		alive_neighbors++;
+if(x_pos < n && y_pos < m)
+	if(matrix[x_pos+1][y_pos+1]==1)
+		alive_neighbors++;
+if(x_pos < n && y_pos > 0)
+	if(matrix[x_pos+1][y_pos-1]==1)
+		alive_neighbors++;
+if(x_pos > 0 && y_pos < m)
+ 	if(matrix[x_pos-1][y_pos+1]==1)
+		alive_neighbors++;
+if(y_pos > 0) 
+	if(matrix[x_pos][y_pos-1]==1)
+		alive_neighbors++;
+if(y_pos < m) 
+	if(matrix[x_pos][y_pos+1]==1)
+		alive_neighbors++;
+if(x_pos < n) 
+	if(matrix[x_pos+1][y_pos]==1)
+		alive_neighbors++;
+if(x_pos > 0)
+	if(matrix[x_pos-1][y_pos]==1)
+		alive_neighbors++;
+
 if(alive_neighbors == 3 && alive == 0) 
 	alive = 1;	
-else 
-	if((alive_neighbors < 2 || alive_neighbors > 3) && alive == 1)
-		alive = 0;
+if((alive_neighbors < 2 || alive_neighbors > 3) && alive == 1)
+	alive = 0;
+
 sigma = 0;
-
-
-
 }
 Event celula::lambda(double t) {
 //This function returns an Event:
@@ -93,6 +102,7 @@ Event celula::lambda(double t) {
 value[0] = x_pos;
 value[1] = y_pos;
 value[2] = alive;
+
 return Event(&value,0);
 }
 void celula::exit() {
