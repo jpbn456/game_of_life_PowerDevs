@@ -8,9 +8,6 @@
       {"x": 1, "y": 2},
       {"x": 1, "y": 3}
     ],
-    "model_name":{
-      "input_file": "example1.pdm",
-      "output_file": "example1.csv"
-    }
+    "model_name": "example1"
 }
   

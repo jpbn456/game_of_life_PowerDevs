@@ -4,7 +4,7 @@ n = 4
 alive_cells = []
 output = ''
 input = ''
-
+model_name = ''
 
 def initialize_pdm():
     global m,n
@@ -153,13 +153,16 @@ import json
 
 
 def read_cfg(json_file):
-    global m, n, output, input
+    global m, n, output, input, model_name
     with open(json_file) as file:
         data = json.load(file)
+    
     m = data['basic']['m']
     n = data['basic']['n']
-    output = data['model_name']['output_file']
-    input = data['model_name']['input_file']
+
+    model_name = data['model_name']
+    output = model_name + ".csv"
+    input = model_name + ".pdm"
     for cell in data['alive_cells']:
         x = cell['x']
         y = cell['y']
