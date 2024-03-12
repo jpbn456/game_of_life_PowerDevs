@@ -70,7 +70,7 @@ result[1] = static_cast<void*>(pN);
 result[2] = static_cast<void*>(pM);
 for(int i = 0; i < n; ++i) {
     for(int j = 0; j < m; j++) {
-        sprintf(buf,"TO DISK MATRIX,%d,%d,%d,%d\n",steps,i,j,alive_cells[i][j]);
+        sprintf(buf,"%d,%d,%d,%d\n",steps,i,j,alive_cells[i][j]);
 			PDFileWrite(FOutput,buf,strlen(buf));
 	}
 }
