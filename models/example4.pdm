@@ -1,0 +1,918 @@
+Coupled
+    {
+    Type = Root
+    Name = proyecto_simulacion
+    Ports = 0; 0
+    Description = 
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 600; 600
+        Direction = Right
+        Color = 15
+        Icon = 
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {    
+        Atomic
+            {
+            Name = Controller
+            Ports = 1 ; 1
+            Path = celulas/controller.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -2000 ; 45
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                N = Str; 5; cell id
+                M = Str; 5; value of the cell. 1 = on 0 = off
+                output = Str; example4.csv; model output
+                }
+            }
+        Atomic
+            {
+            Name = Cell_0_0
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -16000 ; -2010  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;0; Cell Identity Number, Position x
+                y_pos = Str;0; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_0_1
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -16000 ; -1610  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;0; Cell Identity Number, Position x
+                y_pos = Str;1; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_0_2
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -16000 ; -1210  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;0; Cell Identity Number, Position x
+                y_pos = Str;2; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_0_3
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -16000 ; -810  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;0; Cell Identity Number, Position x
+                y_pos = Str;3; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_0_4
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -16000 ; -410  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;0; Cell Identity Number, Position x
+                y_pos = Str;4; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_1_0
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -15600 ; -2010  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;1; Cell Identity Number, Position x
+                y_pos = Str;0; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_1_1
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -15600 ; -1610  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;1; Cell Identity Number, Position x
+                y_pos = Str;1; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_1_2
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -15600 ; -1210  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;1; Cell Identity Number, Position x
+                y_pos = Str;2; Cell Identity Number, Position y
+                Alive = Str;1; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_1_3
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -15600 ; -810  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;1; Cell Identity Number, Position x
+                y_pos = Str;3; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_1_4
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -15600 ; -410  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;1; Cell Identity Number, Position x
+                y_pos = Str;4; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_2_0
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -15200 ; -2010  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;2; Cell Identity Number, Position x
+                y_pos = Str;0; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_2_1
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -15200 ; -1610  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;2; Cell Identity Number, Position x
+                y_pos = Str;1; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_2_2
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -15200 ; -1210  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;2; Cell Identity Number, Position x
+                y_pos = Str;2; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_2_3
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -15200 ; -810  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;2; Cell Identity Number, Position x
+                y_pos = Str;3; Cell Identity Number, Position y
+                Alive = Str;1; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_2_4
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -15200 ; -410  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;2; Cell Identity Number, Position x
+                y_pos = Str;4; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_3_0
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -14800 ; -2010  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;3; Cell Identity Number, Position x
+                y_pos = Str;0; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_3_1
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -14800 ; -1610  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;3; Cell Identity Number, Position x
+                y_pos = Str;1; Cell Identity Number, Position y
+                Alive = Str;1; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_3_2
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -14800 ; -1210  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;3; Cell Identity Number, Position x
+                y_pos = Str;2; Cell Identity Number, Position y
+                Alive = Str;1; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_3_3
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -14800 ; -810  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;3; Cell Identity Number, Position x
+                y_pos = Str;3; Cell Identity Number, Position y
+                Alive = Str;1; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_3_4
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -14800 ; -410  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;3; Cell Identity Number, Position x
+                y_pos = Str;4; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_4_0
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -14400 ; -2010  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;4; Cell Identity Number, Position x
+                y_pos = Str;0; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_4_1
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -14400 ; -1610  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;4; Cell Identity Number, Position x
+                y_pos = Str;1; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_4_2
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -14400 ; -1210  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;4; Cell Identity Number, Position x
+                y_pos = Str;2; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_4_3
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -14400 ; -810  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;4; Cell Identity Number, Position x
+                y_pos = Str;3; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Atomic
+            {
+            Name = Cell_4_4
+            Ports = 1 ; 1
+            Path = celulas/celula.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -14400 ; -410  // Adjust position as needed
+                Dimension = 200 ; 200
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                x_pos = Str;4; Cell Identity Number, Position x
+                y_pos = Str;4; Cell Identity Number, Position y
+                Alive = Str;0; Cell alive status
+                }
+            }
+        Line
+            {
+            Source = Cmp ;  2 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15800; -2000
+            PointY = -1910 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 2 ;  1 ; -1
+            PointX = -1800; -16000
+            PointY = 145 ; -1910 
+            }
+        Line
+            {
+            Source = Cmp ;  3 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15800; -2000
+            PointY = -1510 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 3 ;  1 ; -1
+            PointX = -1800; -16000
+            PointY = 145 ; -1510 
+            }
+        Line
+            {
+            Source = Cmp ;  4 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15800; -2000
+            PointY = -1110 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 4 ;  1 ; -1
+            PointX = -1800; -16000
+            PointY = 145 ; -1110 
+            }
+        Line
+            {
+            Source = Cmp ;  5 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15800; -2000
+            PointY = -710 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 5 ;  1 ; -1
+            PointX = -1800; -16000
+            PointY = 145 ; -710 
+            }
+        Line
+            {
+            Source = Cmp ;  6 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15800; -2000
+            PointY = -310 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 6 ;  1 ; -1
+            PointX = -1800; -16000
+            PointY = 145 ; -310 
+            }
+        Line
+            {
+            Source = Cmp ;  7 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15400; -2000
+            PointY = -1910 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 7 ;  1 ; -1
+            PointX = -1800; -15600
+            PointY = 145 ; -1910 
+            }
+        Line
+            {
+            Source = Cmp ;  8 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15400; -2000
+            PointY = -1510 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 8 ;  1 ; -1
+            PointX = -1800; -15600
+            PointY = 145 ; -1510 
+            }
+        Line
+            {
+            Source = Cmp ;  9 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15400; -2000
+            PointY = -1110 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 9 ;  1 ; -1
+            PointX = -1800; -15600
+            PointY = 145 ; -1110 
+            }
+        Line
+            {
+            Source = Cmp ;  10 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15400; -2000
+            PointY = -710 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 10 ;  1 ; -1
+            PointX = -1800; -15600
+            PointY = 145 ; -710 
+            }
+        Line
+            {
+            Source = Cmp ;  11 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15400; -2000
+            PointY = -310 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 11 ;  1 ; -1
+            PointX = -1800; -15600
+            PointY = 145 ; -310 
+            }
+        Line
+            {
+            Source = Cmp ;  12 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15000; -2000
+            PointY = -1910 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 12 ;  1 ; -1
+            PointX = -1800; -15200
+            PointY = 145 ; -1910 
+            }
+        Line
+            {
+            Source = Cmp ;  13 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15000; -2000
+            PointY = -1510 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 13 ;  1 ; -1
+            PointX = -1800; -15200
+            PointY = 145 ; -1510 
+            }
+        Line
+            {
+            Source = Cmp ;  14 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15000; -2000
+            PointY = -1110 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 14 ;  1 ; -1
+            PointX = -1800; -15200
+            PointY = 145 ; -1110 
+            }
+        Line
+            {
+            Source = Cmp ;  15 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15000; -2000
+            PointY = -710 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 15 ;  1 ; -1
+            PointX = -1800; -15200
+            PointY = 145 ; -710 
+            }
+        Line
+            {
+            Source = Cmp ;  16 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -15000; -2000
+            PointY = -310 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 16 ;  1 ; -1
+            PointX = -1800; -15200
+            PointY = 145 ; -310 
+            }
+        Line
+            {
+            Source = Cmp ;  17 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -14600; -2000
+            PointY = -1910 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 17 ;  1 ; -1
+            PointX = -1800; -14800
+            PointY = 145 ; -1910 
+            }
+        Line
+            {
+            Source = Cmp ;  18 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -14600; -2000
+            PointY = -1510 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 18 ;  1 ; -1
+            PointX = -1800; -14800
+            PointY = 145 ; -1510 
+            }
+        Line
+            {
+            Source = Cmp ;  19 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -14600; -2000
+            PointY = -1110 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 19 ;  1 ; -1
+            PointX = -1800; -14800
+            PointY = 145 ; -1110 
+            }
+        Line
+            {
+            Source = Cmp ;  20 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -14600; -2000
+            PointY = -710 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 20 ;  1 ; -1
+            PointX = -1800; -14800
+            PointY = 145 ; -710 
+            }
+        Line
+            {
+            Source = Cmp ;  21 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -14600; -2000
+            PointY = -310 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 21 ;  1 ; -1
+            PointX = -1800; -14800
+            PointY = 145 ; -310 
+            }
+        Line
+            {
+            Source = Cmp ;  22 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -14200; -2000
+            PointY = -1910 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 22 ;  1 ; -1
+            PointX = -1800; -14400
+            PointY = 145 ; -1910 
+            }
+        Line
+            {
+            Source = Cmp ;  23 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -14200; -2000
+            PointY = -1510 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 23 ;  1 ; -1
+            PointX = -1800; -14400
+            PointY = 145 ; -1510 
+            }
+        Line
+            {
+            Source = Cmp ;  24 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -14200; -2000
+            PointY = -1110 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 24 ;  1 ; -1
+            PointX = -1800; -14400
+            PointY = 145 ; -1110 
+            }
+        Line
+            {
+            Source = Cmp ;  25 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -14200; -2000
+            PointY = -710 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 25 ;  1 ; -1
+            PointX = -1800; -14400
+            PointY = 145 ; -710 
+            }
+        Line
+            {
+            Source = Cmp ;  26 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -14200; -2000
+            PointY = -310 ; 145 
+            }
+        Line
+            {
+            Source = Cmp ; 1 ;  1 ; 0
+            Sink = Cmp ; 26 ;  1 ; -1
+            PointX = -1800; -14400
+            PointY = 145 ; -310 
+            }
+        }
+    }
