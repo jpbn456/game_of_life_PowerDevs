@@ -1,10 +1,13 @@
 # Specify the number of cells you want
-m = 8  # Change this to your desired number of cells
-n = 8
+m = 4  # Change this to your desired number of cells
+n = 4
 alive_cells = []
+output = ''
+input = ''
 
 
 def initialize_pdm():
+    global m,n
         # Initial part of the file
     return """Coupled
     {
@@ -32,6 +35,7 @@ y_controller = 45
 atoms_size = 200
 
 def define_controller():
+    global m,n
     # Adding controller
     return f"""    
         Atomic
@@ -52,13 +56,15 @@ def define_controller():
                 {{
                 N = Str; {n}; cell id
                 M = Str; {m}; value of the cell. 1 = on 0 = off
+                output = Str; {output}; model output
                 }}
             }}"""
 
 x_cells = -16000 
 y_cells = -2010
 # cells_amount #start in 2 because "1" is controller
-def define_cells(m, n):
+def define_cells():
+    global m,n
     # Generating cells
     pdm_content = ""
     x = 0;
@@ -71,6 +77,7 @@ def define_cells(m, n):
     return pdm_content
 
 def define_single_cell(x, y, cell_id):
+    global m,n
     return f"""
         Atomic
             {{
@@ -95,9 +102,11 @@ def define_single_cell(x, y, cell_id):
             }}"""
 
 def define_alive_status(x, y):
+    global m,n
     return 1 if (x, y) in alive_cells else 0
 
-def define_lines(m, n):
+def define_lines():
+    global m, n
     # Generating cells
     pdm_content = ""
     x = 0;
@@ -110,6 +119,7 @@ def define_lines(m, n):
     return pdm_content
 
 def define_single_line(x, y, cell_id):
+    global m,n
     return f"""
         Line
             {{
@@ -120,35 +130,36 @@ def define_single_line(x, y, cell_id):
             }}
         Line
             {{
-            Source = Cmp ; 1 ;  1 ; {cell_id - 2}
+            Source = Cmp ; 1 ;  1 ; {0}
             Sink = Cmp ; {cell_id} ;  1 ; -1
             PointX = {x_controller + atoms_size}; {x_cells + (atoms_size + 200) * x}
             PointY = {y_controller + atoms_size // 2} ; {y_cells + (atoms_size + 200) * y + atoms_size//2} 
             }}"""
 
-def generate_pdm_file(m, n):
-
+def generate_pdm_file():
+    global m,n
     pdm_content = initialize_pdm()
     pdm_content += define_controller()
-    pdm_content += define_cells(m, n)
-    pdm_content += define_lines(m, n)
+    pdm_content += define_cells()
+    pdm_content += define_lines()
     # Write to a .pdm file
     pdm_content +=  """
         }
     }"""
-
-    with open('model.pdm', 'w') as file:
+    with open("models/"+input, 'w') as file:
         file.write(pdm_content)
 
 import json
 
 
 def read_cfg(json_file):
+    global m, n, output, input
     with open(json_file) as file:
         data = json.load(file)
     m = data['basic']['m']
     n = data['basic']['n']
-
+    output = data['model_name']['output_file']
+    input = data['model_name']['input_file']
     for cell in data['alive_cells']:
         x = cell['x']
         y = cell['y']
@@ -163,7 +174,7 @@ if __name__ == "__main__":
     parser.add_argument("json_cfg_path", help="Path to the cfg.json file.")
     args = parser.parse_args()
     read_cfg(args.json_cfg_path)
-    generate_pdm_file(m, n)
+    generate_pdm_file()
     
 
 
