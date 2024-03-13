@@ -33,6 +33,7 @@ if __name__ == '__main__':
     df = pd.read_csv(args.csv_path)
     with open(args.json_cfg_path, 'r') as file:
         data = json.load(file)
+    filename = data['model_name']
     max_x = data['basic']['m']
     max_y = data['basic']['n']
     matrix = np.zeros((max_x, max_y))
@@ -82,4 +83,4 @@ if __name__ == '__main__':
 
         matrix[row['i'], row['j']] = 1  # Assuming top-left is (0,0) and bottom-right is (max_y-1, max_x-1)
         previous_step = current_step
-    imageio.mimsave('my_animation.gif', images, fps=2)  # fps controls the speed of the animation
+    imageio.mimsave(f'./animations/{filename}.gif', images, fps=2)  # fps controls the speed of the animation
