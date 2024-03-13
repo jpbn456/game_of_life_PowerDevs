@@ -45,6 +45,7 @@ if __name__ == '__main__':
     for _, row in df.iterrows():
         # "Paint" the point on the matrix
         current_step = row['step']
+        # print(current_step)
         if current_step > previous_step:
             # Create the plot
             fig, ax = plt.subplots(figsize=(5, 5))
