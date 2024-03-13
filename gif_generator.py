@@ -83,4 +83,4 @@ if __name__ == '__main__':
 
         matrix[row['i'], row['j']] = 1  # Assuming top-left is (0,0) and bottom-right is (max_y-1, max_x-1)
         previous_step = current_step
-    imageio.mimsave(f'./animations/{filename}.gif', images, fps=2)  # fps controls the speed of the animation
+    imageio.mimsave(f'./animations/{filename}.gif', images, fps=1)  # fps controls the speed of the animation
