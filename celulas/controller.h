@@ -19,7 +19,7 @@ int m;
 int** alive_cells;
 void* result[3];
 int steps;
-char* FName;
+char* F_Name;
 #define INF 1e20
 
 public:

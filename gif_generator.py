@@ -33,7 +33,7 @@ if __name__ == '__main__':
     df = pd.read_csv(args.csv_path)
     with open(args.json_cfg_path, 'r') as file:
         data = json.load(file)
-    filename = data['model_name']
+    file_name = data['model_name']
     max_x = data['basic']['m']
     max_y = data['basic']['n']
     matrix = np.zeros((max_x, max_y))
@@ -73,7 +73,7 @@ if __name__ == '__main__':
             ax.invert_yaxis()  # Invert y-axis to match matrix representation
 
             # Instead of saving the image, store it in a buffer (in-memory)
-            fig.canvas.draw()  # Draw the figure so we can capture it
+            fig.canvas.draw()
             image = np.frombuffer(fig.canvas.buffer_rgba(), dtype='uint8')
             image = image.reshape(fig.canvas.get_width_height()[::-1] + (4,))
 
@@ -84,4 +84,4 @@ if __name__ == '__main__':
 
         matrix[row['i'], row['j']] = 1  # Assuming top-left is (0,0) and bottom-right is (max_y-1, max_x-1)
         previous_step = current_step
-    imageio.mimsave(f'./animations/{filename}.gif', images, fps=1)  # fps controls the speed of the animation
+    imageio.mimsave(f'./animations/{file_name}.gif', images, fps=1)  # fps controls the speed of the animation

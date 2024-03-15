@@ -40,11 +40,11 @@ void celula::dext(Event x, double t) {
 //     'e' is the time elapsed since last transition
 // Assume x.value is initially set up correctly as described above
 
-void* generalPointer = x.value; 
-void** resultArray = static_cast<void**>(generalPointer);
-int** retrievedMatrix = static_cast<int**>(resultArray[0]);
-int* nPtr = static_cast<int*>(resultArray[1]); 
-int* mPtr = static_cast<int*>(resultArray[2]); 
+void* general_pointer = x.value; 
+void** result_array = static_cast<void**>(general_pointer);
+int** retrieved_matrix = static_cast<int**>(result_array[0]);
+int* nPtr = static_cast<int*>(result_array[1]); 
+int* mPtr = static_cast<int*>(result_array[2]); 
 int n = *nPtr;
 int m = *mPtr; // Dereference to get m
 int matrix[n][m];
@@ -52,7 +52,7 @@ int matrix[n][m];
 
 for(int i = 0; i < n; ++i) {
     for(int j = 0; j < m; ++j) {
-        matrix[i][j] = retrievedMatrix[i][j];
+        matrix[i][j] = retrieved_matrix[i][j];
     }
 }
 

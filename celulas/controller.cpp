@@ -16,7 +16,7 @@ cell_change_counter = n*m;
 alive_cells = new int*[n];
 steps = 0;
 fvar = va_arg(parameters, char*);
-FName = fvar;
+F_Name = fvar;
 
 
 for(int i = 0;i < n; i++){
@@ -27,7 +27,7 @@ for(int i = 0;i < n; i++){
 }
 
 char buf[1024];
-long int FOutput =  PDFileOpen(FName, 'a');
+long int FOutput =  PDFileOpen(F_Name, 'w');
 sprintf(buf,"step,i,j\n");
 PDFileWrite(FOutput,buf,strlen(buf));
 PDFileClose(FOutput);
@@ -69,11 +69,11 @@ Event controller::lambda(double t) {
 //     %NroPort% is the port number (from 0 to n-1)
 
 result[0] = static_cast<void*>(alive_cells);
-int* pN = new int(n); // Alternatively, if n and m are not dynamic, you could use &n directly, but that's rarely safe in this context
+int* pN = new int(n); 
 int* pM = new int(m);
 
 char buf[1024];
-long int FOutput = PDFileOpen(FName, 'a');
+long int FOutput = PDFileOpen(F_Name, 'a');
 if(steps < 2000){
 	steps++;
 	result[1] = static_cast<void*>(pN);

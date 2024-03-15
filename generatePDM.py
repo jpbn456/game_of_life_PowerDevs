@@ -1,3 +1,6 @@
+import json
+import argparse
+
 # Specify the number of cells you want
 m = 4  # Change this to your desired number of cells
 n = 4
@@ -6,9 +9,10 @@ output = ''
 input = ''
 model_name = ''
 
+
 def initialize_pdm():
-    global m,n
-        # Initial part of the file
+    global m, n
+    # Initial part of the file
     return """Coupled
     {
     Type = Root
@@ -30,12 +34,14 @@ def initialize_pdm():
     System
         {"""
 
+
 x_controller = -2000
 y_controller = 45
 atoms_size = 200
 
+
 def define_controller():
-    global m,n
+    global m, n
     # Adding controller
     return f"""    
         Atomic
@@ -60,15 +66,16 @@ def define_controller():
                 }}
             }}"""
 
-x_cells = -16000 
+
+x_cells = -16000
 y_cells = -2010
+
+
 # cells_amount #start in 2 because "1" is controller
 def define_cells():
-    global m,n
+    global m, n
     # Generating cells
     pdm_content = ""
-    x = 0;
-    y = 0;
     cells_amount = 2
     for i in range(m):
         for j in range(n):
@@ -76,8 +83,9 @@ def define_cells():
             cells_amount += 1
     return pdm_content
 
+
 def define_single_cell(x, y, cell_id):
-    global m,n
+    global m, n
     return f"""
         Atomic
             {{
@@ -87,7 +95,7 @@ def define_single_cell(x, y, cell_id):
             Description = Atomic DEVS model
             Graphic
                 {{
-                Position = {x_cells + (atoms_size + 200) * x } ; {y_cells + (atoms_size + 200) * y }  // Adjust position as needed
+                Position = {x_cells + (atoms_size + 200) * x} ; {y_cells + (atoms_size + 200) * y}  // Adjust position as needed
                 Dimension = {atoms_size} ; {atoms_size}
                 Direction = Right
                 Color = 15
@@ -101,16 +109,16 @@ def define_single_cell(x, y, cell_id):
                 }}
             }}"""
 
+
 def define_alive_status(x, y):
-    global m,n
+    global m, n
     return 1 if (x, y) in alive_cells else 0
+
 
 def define_lines():
     global m, n
     # Generating cells
     pdm_content = ""
-    x = 0;
-    y = 0;
     cells_amount = 2
     for i in range(m):
         for j in range(n):
@@ -118,45 +126,45 @@ def define_lines():
             cells_amount += 1
     return pdm_content
 
+
 def define_single_line(x, y, cell_id):
-    global m,n
+    global m, n
     return f"""
         Line
             {{
             Source = Cmp ;  {cell_id} ;  1 ; 0
             Sink = Cmp ;  1 ;  1 ; -1
             PointX = {x_cells + (atoms_size + 200) * x + atoms_size}; {x_controller}
-            PointY = {y_cells + (atoms_size + 200) * y + atoms_size // 2} ; {y_controller + atoms_size//2} 
+            PointY = {y_cells + (atoms_size + 200) * y + atoms_size // 2} ; {y_controller + atoms_size // 2} 
             }}
         Line
             {{
             Source = Cmp ; 1 ;  1 ; {0}
             Sink = Cmp ; {cell_id} ;  1 ; -1
             PointX = {x_controller + atoms_size}; {x_cells + (atoms_size + 200) * x}
-            PointY = {y_controller + atoms_size // 2} ; {y_cells + (atoms_size + 200) * y + atoms_size//2} 
+            PointY = {y_controller + atoms_size // 2} ; {y_cells + (atoms_size + 200) * y + atoms_size // 2} 
             }}"""
 
+
 def generate_pdm_file():
-    global m,n
+    global m, n
     pdm_content = initialize_pdm()
     pdm_content += define_controller()
     pdm_content += define_cells()
     pdm_content += define_lines()
     # Write to a .pdm file
-    pdm_content +=  """
+    pdm_content += """
         }
     }"""
-    with open("models/"+input, 'w') as file:
+    with open("models/" + input, 'w') as file:
         file.write(pdm_content)
-
-import json
 
 
 def read_cfg(json_file):
     global m, n, output, input, model_name
     with open(json_file) as file:
         data = json.load(file)
-    
+
     m = data['basic']['m']
     n = data['basic']['n']
 
@@ -166,11 +174,10 @@ def read_cfg(json_file):
     for cell in data['alive_cells']:
         x = cell['x']
         y = cell['y']
-        if(x >= m or y >= n): 
+        if x >= m or y >= n:
             raise ValueError("Wrong imput value")
         alive_cells.append((x, y))
 
-import argparse
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create PDM file")
@@ -178,6 +185,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
     read_cfg(args.json_cfg_path)
     generate_pdm_file()
-    
-
-
