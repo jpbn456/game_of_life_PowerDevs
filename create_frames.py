@@ -45,7 +45,7 @@ if __name__ == '__main__':
             # Display the matrix; setting 'edge color' to visualize grid lines
             c = ax.pcolormesh(matrix, cmap='Greys', edgecolor='k')
 
-            ax.set_title(f'Step: {current_step}')
+            ax.set_title(f'Step: {previous_step}')
 
             # Set the ticks to align with each cell
             ax.set_xticks(np.arange(max_x + 1))
