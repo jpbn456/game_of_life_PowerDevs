@@ -22,6 +22,19 @@ def new_matrix():
     # Hide the frame
     ax.set_frame_on(False)
 
+def blank_matrix(matrix, m, n):
+    for i  in range(m):
+        for j in range(n):
+            if matrix[i][j] == 1:
+                return False
+    return True
+
+def equals_matrix(matrix_1, matrix_2, m, n):
+    for i  in range(m):
+        for j in range(n):
+            if matrix_1[i][j] != matrix_2[i][j]:
+                return False
+    return True
 
 if __name__ == '__main__':
 
@@ -55,7 +68,7 @@ if __name__ == '__main__':
             # Display the matrix; setting 'edge color' to visualize grid lines
             c = ax.pcolormesh(matrix, cmap='Greys', edgecolor='k')
 
-            ax.set_title(f'Step: {current_step}')
+            ax.set_title(f'Step: {previous_step}')
 
             # Set the ticks to align with each cell
             ax.set_xticks(np.arange(max_x + 1))
@@ -81,9 +94,11 @@ if __name__ == '__main__':
 
             images.append(image)
             plt.close()
-
+            
+            if (len(images) > 1 and equals_matrix(prev_matrix, matrix, max_x, max_y)) or blank_matrix(matrix, max_x, max_y):
+                break
+            prev_matrix = matrix
             matrix = np.zeros((max_x, max_y))
-
         matrix[row['i'], row['j']] = 1  # Assuming top-left is (0,0) and bottom-right is (max_y-1, max_x-1)
         previous_step = current_step
     imageio.mimsave(f'./animations/{file_name}.gif', images, fps=1)  # fps controls the speed of the animation
