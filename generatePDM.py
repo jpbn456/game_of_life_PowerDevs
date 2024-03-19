@@ -1,10 +1,14 @@
 import json
 import argparse
 
-# Specify the number of cells you want
-m = 4  # Change this to your desired number of cells
+#matrix size
+m = 4  
 n = 4
+
+#list of alive cells
 alive_cells = []
+
+#files
 output = ''
 input = ''
 model_name = ''
@@ -117,7 +121,7 @@ def define_alive_status(x, y):
 
 def define_lines():
     global m, n
-    # Generating cells
+    # Generating lines
     pdm_content = ""
     cells_amount = 2
     for i in range(m):

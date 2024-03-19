@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Navigate to the script directory if necessary
-# cd /path/to/your/script
+
+#this script run "gif_geneator.py" program for all examples
 
 for example in examples/*.json; do
     filename=$(basename -- "$example")

@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Navigate to the script directory if necessary
-# cd /path/to/your/script
+#this script run "create_frames.py" for all example
 
 for example in examples/*.json; do
     filename=$(basename -- "$example")
