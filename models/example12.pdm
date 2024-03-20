@@ -498,7 +498,7 @@ Coupled
                 {
                 x_pos = Str;2; Cell Identity Number, Position x
                 y_pos = Str;5; Cell Identity Number, Position y
-                Alive = Str;0; Cell alive status
+                Alive = Str;1; Cell alive status
                 }
             }
         Atomic
@@ -666,7 +666,7 @@ Coupled
                 {
                 x_pos = Str;3; Cell Identity Number, Position x
                 y_pos = Str;5; Cell Identity Number, Position y
-                Alive = Str;1; Cell alive status
+                Alive = Str;0; Cell alive status
                 }
             }
         Atomic
