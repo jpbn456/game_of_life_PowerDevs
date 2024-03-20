@@ -58,7 +58,6 @@ if __name__ == '__main__':
     for _, row in df.iterrows():
         # "Paint" the point on the matrix
         current_step = row['step']
-        # print(current_step)
         if current_step > previous_step:
             # Create the plot
             fig, ax = plt.subplots(figsize=(5, 5))
@@ -68,7 +67,11 @@ if __name__ == '__main__':
             # Display the matrix; setting 'edge color' to visualize grid lines
             c = ax.pcolormesh(matrix, cmap='Greys', edgecolor='k')
 
+<<<<<<< HEAD
             ax.set_title(f'Step: {previous_step}')
+=======
+            ax.set_title(f'Step: {current_step-1}')
+>>>>>>> c564247 (update)
 
             # Set the ticks to align with each cell
             ax.set_xticks(np.arange(max_x + 1))
