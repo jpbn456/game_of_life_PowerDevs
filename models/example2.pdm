@@ -36,6 +36,9 @@ Coupled
                 {
                 N = Str; 5; cell id
                 M = Str; 5; value of the cell. 1 = on 0 = off
+                surviveMin = Str; 2; min value of livness interval.
+                surviveMax = Str; 3; max value of livness interval.
+                birth = Str; 3; number of neighbourds alive for birth a new cell.
                 output = Str; example2.csv; model output
                 }
             }

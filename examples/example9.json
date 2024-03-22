@@ -1,7 +1,10 @@
 {
   "basic": {
     "m":11,
-    "n":11
+    "n":11,
+    "survive_max": 3,
+    "survive_mix": 2,
+    "birth": 3
   },
   "alive_cells": [
     {"x": 1, "y": 5}, {"x": 1, "y": 6},

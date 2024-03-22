@@ -4,6 +4,9 @@ import argparse
 #matrix size
 m = 4  
 n = 4
+survive_min = 2
+survive_max = 3
+birth = 3
 
 #list of alive cells
 alive_cells = []
@@ -45,7 +48,7 @@ atoms_size = 200
 
 
 def define_controller():
-    global m, n
+    global m, n, survive_min, survive_max,birth
     # Adding controller
     return f"""    
         Atomic
@@ -66,6 +69,9 @@ def define_controller():
                 {{
                 N = Str; {n}; cell id
                 M = Str; {m}; value of the cell. 1 = on 0 = off
+                surviveMin = Str; {survive_min}; min value of livness interval.
+                surviveMax = Str; {survive_max}; max value of livness interval.
+                birth = Str; {birth}; number of neighbourds alive for birth a new cell.
                 output = Str; {output}; model output
                 }}
             }}"""
@@ -165,12 +171,16 @@ def generate_pdm_file():
 
 
 def read_cfg(json_file):
-    global m, n, output, input, model_name
+    global m, n, output, input, model_name, survive_min, survive_max, birth
     with open(json_file) as file:
         data = json.load(file)
 
     m = data['basic']['m']
     n = data['basic']['n']
+    survive_max = data['basic']['survive_max']
+    survive_min = data['basic']['survive_mix']
+    birth = data['basic']['birth']
+
 
     model_name = data['model_name']
     output = model_name + ".csv"
